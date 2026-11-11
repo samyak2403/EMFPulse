@@ -1,0 +1,34 @@
+EMF Pulse is a modern electromagnetic field (EMF) and radiation detector designed for precision environmental measurement, safety monitoring, ghost hunting, and scientific investigation.
+
+Using your device's built-in magnetic sensor, EMF Pulse delivers accurate, real-time readings in both Microtesla (µT) and Milligauss (mG).
+
+<b>Key Features:</b>
+
+• <b>Dynamic SpeedView Dial</b> - Responsive analog speedometer gauge with color-coded safety zones (Safe, Normal, Caution, and Hazard) and needle tracking.
+• <b>K2-Style LED Level Indicator</b> - 15-segment multi-color LED bar meter displaying real-time field intensity percentage.
+• <b>Real-Time Waveform Graph</b> - Smooth live scrolling waveform visualizing micro-fluctuations and electromagnetic spikes as they happen.
+• <b>Geiger Counter Audio Alerts</b> - Acoustic clicks and warning tones that speed up as electromagnetic field radiation increases.
+• <b>3-Axis Vector Breakdown</b> - Detailed real-time readings for X, Y, and Z magnetic flux vectors, plus instant Peak and Minimum retention.
+• <b>Zero Baseline Calibration</b> - Tare and zero-out ambient environmental magnetic noise with a single tap for accurate relative testing.
+• <b>Dual Unit Switching</b> - Seamlessly switch between Milligauss (mG) and Microtesla (µT) with custom emerald I/O toggles.
+• <b>Integrated Test Mode</b> - Built-in simulation mode allows testing and demonstration on all devices, even those without a hardware magnetometer.
+• <b>Modern Cyber Aesthetic</b> - Built with Jetpack Compose featuring deep dark surfaces, smooth animations, and clean Plus Jakarta Sans typography.
+
+<b>How it works:</b>
+
+EMF Pulse reads raw geomagnetic flux data directly from your device's magnetometer hardware. The app filters and calculates the magnetic magnitude vector in real time, converting values into standard international units (µT and mG). When elevated radiation is detected, the display updates dynamically and triggers audio Geiger pulses.
+
+<b>Privacy & Security:</b>
+
+• 100% offline — no internet permission needed
+• No tracking, telemetry, or analytics
+• No ads or third-party SDKs
+• Open source (MIT License)
+• Safe and lightweight
+
+<b>Requirements:</b>
+
+• Android 7.0 (API 24) or higher
+• Built-in magnetic sensor (magnetometer) or run in Test Mode
+
+EMF Pulse is free and open source under the MIT License. If you find it helpful, consider starring the GitHub repository!

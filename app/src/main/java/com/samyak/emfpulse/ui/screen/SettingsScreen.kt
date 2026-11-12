@@ -49,11 +49,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.samyak.emfpulse.R
 import com.samyak.emfpulse.data.model.AppMode
 import com.samyak.emfpulse.data.model.EmfUnit
+import com.samyak.emfpulse.data.model.SensorPosition
 import com.samyak.emfpulse.ui.components.CustomToggleSwitch
 import com.samyak.emfpulse.ui.theme.AccentRose
 import com.samyak.emfpulse.ui.theme.DarkBorder
@@ -80,6 +82,8 @@ fun SettingsScreen(
     onToggleSound: (Boolean) -> Unit,
     onSelectUnit: (EmfUnit) -> Unit,
     onResetCalibration: () -> Unit,
+    onToggleSensorLocation: (Boolean) -> Unit = {},
+    onSelectSensorPosition: (SensorPosition) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -257,6 +261,45 @@ fun SettingsScreen(
                             fontWeight = FontWeight.SemiBold,
                             color = AccentRose
                         )
+                    }
+                }
+            }
+
+            // Sensor Location Indicator Toggle & Position Selector
+            SettingsSwitchTile(
+                title = stringResource(R.string.settings_show_sensor_location),
+                description = stringResource(R.string.settings_show_sensor_location_desc),
+                icon = Icons.Default.Sensors,
+                checked = state.isSensorLocationVisible,
+                onCheckedChange = onToggleSensorLocation
+            )
+
+            if (state.isSensorLocationVisible) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    SensorPosition.entries.forEach { pos ->
+                        val isSelected = pos == state.sensorPosition
+                        val shape = RoundedCornerShape(10.dp)
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .clip(shape)
+                                .background(if (isSelected) AccentRose.copy(alpha = 0.2f) else DarkSurface)
+                                .border(1.dp, if (isSelected) AccentRose else DarkBorder, shape)
+                                .clickable { onSelectSensorPosition(pos) }
+                                .padding(vertical = 10.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = stringResource(pos.labelResId),
+                                fontSize = 11.sp,
+                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
+                                color = if (isSelected) AccentRose else TextPrimary,
+                                textAlign = TextAlign.Center
+                            )
+                        }
                     }
                 }
             }

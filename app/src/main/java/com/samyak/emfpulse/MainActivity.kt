@@ -98,7 +98,9 @@ class MainActivity : ComponentActivity() {
                                     onSelectMode = viewModel::setAppMode,
                                     onToggleSound = viewModel::setBeepEnabled,
                                     onSelectUnit = viewModel::setUnit,
-                                    onResetCalibration = viewModel::toggleZeroCalibrate
+                                    onResetCalibration = viewModel::toggleZeroCalibrate,
+                                    onToggleSensorLocation = viewModel::setSensorLocationVisible,
+                                    onSelectSensorPosition = viewModel::setSensorPosition
                                 )
                             }
                             ScreenState.ABOUT -> {

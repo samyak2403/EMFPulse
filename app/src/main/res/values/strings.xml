@@ -59,7 +59,7 @@
     <string name="settings_sensor_unavailable">Unavailable</string>
     <string name="settings_baseline_offset">Baseline Offset</string>
     <string name="settings_reset_zero">Reset Zero</string>
-    <string name="settings_app_info">EMFPulse v1.0.1 • Plus Jakarta Sans &amp; Veil Theme</string>
+    <string name="settings_app_info">EMFPulse v1.0.2 • Plus Jakarta Sans &amp; Veil Theme</string>
 
     <!-- About & Developer Section in Settings -->
     <string name="settings_section_about">ABOUT &amp; PROJECT</string>
@@ -72,7 +72,7 @@
 
     <!-- About Screen -->
     <string name="about_title">About</string>
-    <string name="about_app_version">Version 1.0.1 (Build 2)</string>
+    <string name="about_app_version">Version 1.0.2 (Build 3)</string>
     <string name="about_tagline">Precision Electromagnetic Field &amp; Radiation Detector</string>
     <string name="about_section_description_title">About Application</string>
     <string name="about_section_description_body">EMF Pulse is an open-source Android application designed for detecting electromagnetic radiation, measuring magnetic flux density, paranormal research, and inspecting electronic equipment with real-time audio and visual feedback.</string>
@@ -87,6 +87,21 @@
     <string name="about_section_license_title">License &amp; Privacy</string>
     <string name="about_license_body">Released under the MIT License.\n100% Offline • Zero Tracking • Zero Analytics • No Ads.</string>
     <string name="about_copyright">© 2026 Samyak Kamble • Open Source (MIT)</string>
+
+    <!-- Sensor Location Feature -->
+    <string name="sensor_location_title">Sensor Location</string>
+    <string name="sensor_location_badge">SENSOR</string>
+    <string name="sensor_location_dialog_title">Magnetic Sensor Position</string>
+    <string name="sensor_location_dialog_desc">Smartphones place the magnetometer chip at different physical spots. Hold this edge of your phone closest to magnetic fields for peak sensitivity.</string>
+    <string name="sensor_location_tip">💡 Tip: Wave a small fridge magnet or earbud case around your phone edges. Where the reading peaks is your exact sensor spot!</string>
+    <string name="sensor_pos_left">Left Edge</string>
+    <string name="sensor_pos_top_left">Top Left</string>
+    <string name="sensor_pos_top_right">Top Right</string>
+    <string name="sensor_pos_right">Right Edge</string>
+    <string name="settings_show_sensor_location">Sensor Location Pin</string>
+    <string name="settings_show_sensor_location_desc">Show magnet icon on screen indicating physical sensor spot.</string>
+    <string name="settings_sensor_position">Sensor Placement</string>
+    <string name="action_close">Close</string>
 
     <!-- No Sensor Screen -->
     <string name="no_sensor_badge">HARDWARE SENSOR NOT FOUND</string>

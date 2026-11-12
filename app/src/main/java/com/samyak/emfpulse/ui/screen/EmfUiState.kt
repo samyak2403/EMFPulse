@@ -4,6 +4,7 @@ import com.samyak.emfpulse.data.model.AppMode
 import com.samyak.emfpulse.data.model.EmfReading
 import com.samyak.emfpulse.data.model.EmfStatus
 import com.samyak.emfpulse.data.model.EmfUnit
+import com.samyak.emfpulse.data.model.SensorPosition
 
 /**
  * Immutable UI state model for the EMF Detector screen and settings.
@@ -19,7 +20,9 @@ data class EmfUiState(
     val unit: EmfUnit = EmfUnit.MICROTESLA,
     val history: List<Float> = emptyList(),
     val isSensorAvailable: Boolean = true,
-    val appMode: AppMode = AppMode.PRODUCTION
+    val appMode: AppMode = AppMode.PRODUCTION,
+    val sensorPosition: SensorPosition = SensorPosition.LEFT,
+    val isSensorLocationVisible: Boolean = true
 ) {
     val status: EmfStatus
         get() = EmfStatus.fromValue(calibratedMagnitude)

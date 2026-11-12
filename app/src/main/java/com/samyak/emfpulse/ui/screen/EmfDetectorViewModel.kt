@@ -7,6 +7,7 @@ import com.samyak.emfpulse.data.audio.EmfTonePlayer
 import com.samyak.emfpulse.data.model.AppMode
 import com.samyak.emfpulse.data.model.EmfReading
 import com.samyak.emfpulse.data.model.EmfUnit
+import com.samyak.emfpulse.data.model.SensorPosition
 import com.samyak.emfpulse.data.sensor.AndroidEmfSensorManager
 import com.samyak.emfpulse.data.sensor.EmfSensorManager
 import com.samyak.emfpulse.data.sensor.SimulatedEmfSensorManager
@@ -156,6 +157,14 @@ class EmfDetectorViewModel(
                 minReading = Float.MAX_VALUE
             )
         }
+    }
+
+    fun setSensorPosition(position: SensorPosition) {
+        _uiState.update { it.copy(sensorPosition = position) }
+    }
+
+    fun setSensorLocationVisible(visible: Boolean) {
+        _uiState.update { it.copy(isSensorLocationVisible = visible) }
     }
 
     override fun onCleared() {

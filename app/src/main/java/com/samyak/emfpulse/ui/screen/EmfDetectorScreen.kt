@@ -27,17 +27,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.boundsInRoot
-import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -54,7 +47,6 @@ import com.samyak.emfpulse.ui.components.ControlBtn
 import com.samyak.emfpulse.ui.components.LedSegmentIndicator
 import com.samyak.emfpulse.ui.components.LiveTimeGraph
 import com.samyak.emfpulse.ui.components.ReadoutBox
-import com.samyak.emfpulse.ui.components.SensorCableWave
 import com.samyak.emfpulse.ui.components.SensorLocationIndicator
 import com.samyak.emfpulse.ui.components.SpeedometerGauge
 import com.samyak.emfpulse.ui.components.StatusIndicatorBanner
@@ -104,9 +96,6 @@ fun EmfDetectorContent(
     onAutoDetect: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
-    var ledCardBounds by remember { mutableStateOf<Rect?>(null) }
-    var sensorCenter by remember { mutableStateOf<Offset?>(null) }
-
     Box(
         modifier = modifier.fillMaxSize()
     ) {
@@ -197,12 +186,7 @@ fun EmfDetectorContent(
                 StatusIndicatorBanner(status = state.status)
 
                 // 2. LED Segment Level Indicator
-                LedSegmentIndicator(
-                    emfValue = state.calibratedMagnitude,
-                    modifier = Modifier.onGloballyPositioned { coords ->
-                        ledCardBounds = coords.boundsInRoot()
-                    }
-                )
+                LedSegmentIndicator(emfValue = state.calibratedMagnitude)
 
                 // 3. Dynamic SpeedView Gauge Meter (from libs.speedometer)
                 val gaugeMax = if (state.unit == EmfUnit.MILLIGAUSS) 3000f else 300f
@@ -308,17 +292,6 @@ fun EmfDetectorContent(
             }
         }
 
-        // Animated White Cable connecting Sensor Location probe to the LED Level Indicator Card
-        if (state.isSensorLocationVisible) {
-            SensorCableWave(
-                position = state.sensorPosition,
-                cardBounds = ledCardBounds,
-                sensorCenter = sensorCenter,
-                emfValue = state.calibratedMagnitude,
-                modifier = Modifier.fillMaxSize()
-            )
-        }
-
         // 3. Sensor Location Indicator Badge on Device Edge (matching image example)
         if (state.isSensorLocationVisible) {
             val alignment = when (state.sensorPosition) {
@@ -331,11 +304,7 @@ fun EmfDetectorContent(
                 position = state.sensorPosition,
                 onPositionChanged = onPositionChanged,
                 onAutoDetect = onAutoDetect,
-                modifier = Modifier
-                    .align(alignment)
-                    .onGloballyPositioned { coords ->
-                        sensorCenter = coords.boundsInRoot().center
-                    }
+                modifier = Modifier.align(alignment)
             )
         }
     }

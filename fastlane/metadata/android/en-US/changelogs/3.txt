@@ -1,0 +1,6 @@
+• Physical Sensor Location Pin: Floating edge icon indicating exact hardware magnetometer spot.
+• Automatic Sensor Detection: Auto-detects physical sensor placement via Android HAL and OEM profile heuristics.
+• Interactive Sensor Dialog: Tap the sensor pin for calibration guidance and one-tap placement switching.
+• Settings Integration: Configure sensor location visibility and placement options anytime.
+• UI & Performance Polish: Seamless transparent overlay matching the dark aesthetic.
+

@@ -4,6 +4,30 @@ All notable changes and releases for EMF Pulse are documented here.
 
 ---
 
+## [v1.0.2] - 2026-11-12
+> **Version Code:** `3` • **Target SDK:** `37` (Android 15+) • **Min SDK:** `24` (Android 7.0+)
+
+### ✨ What's New
+- **Physical Sensor Location Pin**:
+  - Pinned directly to the device border (Left, Right, Top-Left, or Top-Right) indicating the exact physical position of the smartphone's magnetometer chip.
+  - Transparent, floating vector icon (`ic_magnetic_sensor`) seamlessly integrated with the dark background.
+  - Interactive tap: Clicking the sensor pin opens a dedicated dialog with calibration guidance and one-tap position switching.
+
+- **Automatic Sensor Location Detection**:
+  - Automatic detection on startup via Android API 24+ HAL metadata (`SensorAdditionalInfo.TYPE_SENSOR_PLACEMENT`) providing physical millimeter offsets relative to screen center.
+  - OEM hardware architecture heuristics (Pixel ➔ Top-Left, Samsung ➔ Right edge, Xiaomi/Redmi ➔ Top-Left, OnePlus/Oppo ➔ Left, Motorola ➔ Top-Right).
+  - One-tap **"Auto Detect"** action in both the Sensor Placement Dialog and Settings.
+
+- **Settings Screen Controls**:
+  - Toggle switch under **"SENSOR & CALIBRATION"** to show or hide the sensor pin.
+  - Sensor Placement selector chips (*Left Edge, Top Left, Top Right, Right Edge*) with quick Auto-Detect.
+
+- **UI & Performance Refinements**:
+  - Removed clunky background boxes and borders for a minimalist, bezel-aligned look.
+  - Cleaned vector graphics to a high-precision 512x512 canvas.
+
+---
+
 ## [v1.0.1] - 2026-11-12
 > **Version Code:** `2` • **Target SDK:** `37` (Android 15+) • **Min SDK:** `24` (Android 7.0+)
 

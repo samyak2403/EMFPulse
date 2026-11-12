@@ -1,7 +1,5 @@
-• Initial release of EMF Pulse.
-• SpeedView analog gauge meter and real-time waveform graph.
-• K2-style 15-segment LED level indicator.
-• Geiger counter audio beep alerts.
-• Test / Simulation Mode for zero-sensor testing.
-• Microtesla (µT) and Milligauss (mG) unit support.
-
+• Brand new About Screen with app version, features, and license info.
+• Direct Developer (Samyak Kamble) and Source Code GitHub links.
+• Enhanced Settings navigation with dedicated About & Project section.
+• Smooth back-stack and hardware back navigation handling.
+• Performance optimizations and UI polish.

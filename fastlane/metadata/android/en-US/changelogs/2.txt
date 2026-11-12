@@ -1,0 +1,5 @@
+• Brand new About Screen with app version, features, and license info.
+• Direct Developer (Samyak Kamble) and Source Code GitHub links.
+• Enhanced Settings navigation with dedicated About & Project section.
+• Smooth back-stack and hardware back navigation handling.
+• Performance optimizations and UI polish.

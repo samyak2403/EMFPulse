@@ -23,3 +23,8 @@ fastlane/test_output
 fastlane/api-key.json
 .bundle
 vendor/bundle
+
+# Release build outputs
+app/release/
+*.apk
+*.aab

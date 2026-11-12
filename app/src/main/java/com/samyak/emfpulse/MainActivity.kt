@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.samyak.emfpulse.data.model.AppMode
+import com.samyak.emfpulse.ui.screen.AboutScreen
 import com.samyak.emfpulse.ui.screen.EmfDetectorScreen
 import com.samyak.emfpulse.ui.screen.EmfDetectorViewModel
 import com.samyak.emfpulse.ui.screen.NoSensorScreen
@@ -31,7 +32,8 @@ import com.samyak.emfpulse.ui.theme.EMFPulseTheme
 enum class ScreenState {
     NO_SENSOR,
     DETECTOR,
-    SETTINGS
+    SETTINGS,
+    ABOUT
 }
 
 class MainActivity : ComponentActivity() {
@@ -51,9 +53,12 @@ class MainActivity : ComponentActivity() {
                     )
                 }
 
-                // Handle back navigation from Settings
+                // Handle back navigation from Settings and About
                 BackHandler(enabled = currentScreen == ScreenState.SETTINGS) {
                     currentScreen = ScreenState.DETECTOR
+                }
+                BackHandler(enabled = currentScreen == ScreenState.ABOUT) {
+                    currentScreen = ScreenState.SETTINGS
                 }
 
                 Box(
@@ -89,10 +94,16 @@ class MainActivity : ComponentActivity() {
                                 SettingsScreen(
                                     state = state,
                                     onNavigateBack = { currentScreen = ScreenState.DETECTOR },
+                                    onNavigateToAbout = { currentScreen = ScreenState.ABOUT },
                                     onSelectMode = viewModel::setAppMode,
                                     onToggleSound = viewModel::setBeepEnabled,
                                     onSelectUnit = viewModel::setUnit,
                                     onResetCalibration = viewModel::toggleZeroCalibrate
+                                )
+                            }
+                            ScreenState.ABOUT -> {
+                                AboutScreen(
+                                    onNavigateBack = { currentScreen = ScreenState.SETTINGS }
                                 )
                             }
                         }

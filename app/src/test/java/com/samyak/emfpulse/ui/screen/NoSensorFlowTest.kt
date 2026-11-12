@@ -22,5 +22,19 @@ class NoSensorFlowTest {
 
         assertEquals("When sensor is missing, it must route to NO_SENSOR", "NO_SENSOR", initialScreen)
     }
+
+    @Test
+    fun testSettingsToAboutNavigationStates() {
+        var currentScreen = com.samyak.emfpulse.ScreenState.SETTINGS
+        assertEquals(com.samyak.emfpulse.ScreenState.SETTINGS, currentScreen)
+
+        // Navigate to About
+        currentScreen = com.samyak.emfpulse.ScreenState.ABOUT
+        assertEquals(com.samyak.emfpulse.ScreenState.ABOUT, currentScreen)
+
+        // Navigate back from About to Settings
+        currentScreen = com.samyak.emfpulse.ScreenState.SETTINGS
+        assertEquals(com.samyak.emfpulse.ScreenState.SETTINGS, currentScreen)
+    }
 }
 

@@ -1,5 +1,8 @@
 package com.samyak.emfpulse.ui.screen
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -20,12 +23,17 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.filled.OpenInNew
 import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Science
 import androidx.compose.material.icons.filled.Sensors
 import androidx.compose.material.icons.filled.Tune
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -38,6 +46,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -54,6 +63,9 @@ import com.samyak.emfpulse.ui.theme.SafeGreen
 import com.samyak.emfpulse.ui.theme.TextPrimary
 import com.samyak.emfpulse.ui.theme.TextSecondary
 
+private const val GITHUB_REPO_URL = "https://github.com/samyak2403/EMFPulse"
+private const val DEVELOPER_PROFILE_URL = "https://github.com/samyak2403"
+
 /**
  * Settings Screen for configuring EMFPulse operation mode, audio alerts, and units.
  * All texts are referenced through string resources.
@@ -63,12 +75,14 @@ import com.samyak.emfpulse.ui.theme.TextSecondary
 fun SettingsScreen(
     state: EmfUiState,
     onNavigateBack: () -> Unit,
+    onNavigateToAbout: () -> Unit,
     onSelectMode: (AppMode) -> Unit,
     onToggleSound: (Boolean) -> Unit,
     onSelectUnit: (EmfUnit) -> Unit,
     onResetCalibration: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -247,7 +261,34 @@ fun SettingsScreen(
                 }
             }
 
-            // Section 5: App Info
+            // Section 5: Source Code, Developer & About
+            SettingsSectionHeader(title = stringResource(R.string.settings_section_about))
+
+            SettingsClickableTile(
+                title = stringResource(R.string.settings_about_app_title),
+                description = stringResource(R.string.settings_about_app_desc),
+                icon = Icons.Outlined.Info,
+                trailingIcon = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                onClick = onNavigateToAbout
+            )
+
+            SettingsClickableTile(
+                title = stringResource(R.string.settings_developer_title),
+                description = stringResource(R.string.settings_developer_desc),
+                icon = Icons.Default.Person,
+                trailingIcon = Icons.AutoMirrored.Filled.OpenInNew,
+                onClick = { launchBrowser(context, DEVELOPER_PROFILE_URL) }
+            )
+
+            SettingsClickableTile(
+                title = stringResource(R.string.settings_source_code_title),
+                description = stringResource(R.string.settings_source_code_desc),
+                icon = Icons.Default.Code,
+                trailingIcon = Icons.AutoMirrored.Filled.OpenInNew,
+                onClick = { launchBrowser(context, GITHUB_REPO_URL) }
+            )
+
+            // Section 6: App Info
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -486,5 +527,83 @@ private fun UnitSelectionCard(
             fontSize = 11.sp,
             color = TextSecondary
         )
+    }
+}
+
+/**
+ * Clickable tile for navigation and external links with trailing chevron or link icon.
+ */
+@Composable
+private fun SettingsClickableTile(
+    title: String,
+    description: String,
+    icon: ImageVector,
+    trailingIcon: ImageVector,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val shape = RoundedCornerShape(12.dp)
+
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(shape)
+            .background(DarkSurface)
+            .border(1.dp, DarkBorder, shape)
+            .clickable(onClick = onClick)
+            .padding(14.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
+            modifier = Modifier
+                .size(40.dp)
+                .clip(CircleShape)
+                .background(AccentRose.copy(alpha = 0.12f)),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                tint = AccentRose,
+                modifier = Modifier.size(20.dp)
+            )
+        }
+
+        Spacer(modifier = Modifier.width(12.dp))
+
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = title,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                color = TextPrimary
+            )
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(
+                text = description,
+                fontSize = 12.sp,
+                color = TextSecondary,
+                lineHeight = 16.sp
+            )
+        }
+
+        Spacer(modifier = Modifier.width(8.dp))
+
+        Icon(
+            imageVector = trailingIcon,
+            contentDescription = null,
+            tint = TextSecondary,
+            modifier = Modifier.size(20.dp)
+        )
+    }
+}
+
+private fun launchBrowser(context: Context, url: String) {
+    try {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+        context.startActivity(intent)
+    } catch (_: Exception) {
     }
 }

@@ -55,8 +55,23 @@ class EmfDetectorViewModel(
     private var sensorJob: Job? = null
 
     init {
+        autoDetectInitialPosition()
         observeCurrentSensor()
         startAudioLoop()
+    }
+
+    private fun autoDetectInitialPosition() {
+        val detected = productionSensorManager.detectHardwareSensorPosition()
+        if (detected != null) {
+            _uiState.update { it.copy(sensorPosition = detected) }
+        }
+    }
+
+    fun autoDetectSensorPosition() {
+        val detected = productionSensorManager.detectHardwareSensorPosition()
+        if (detected != null) {
+            _uiState.update { it.copy(sensorPosition = detected) }
+        }
     }
 
     private fun observeCurrentSensor() {

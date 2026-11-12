@@ -98,6 +98,8 @@
     <string name="sensor_pos_top_left">Top Left</string>
     <string name="sensor_pos_top_right">Top Right</string>
     <string name="sensor_pos_right">Right Edge</string>
+    <string name="sensor_pos_auto_detect">Auto Detect</string>
+    <string name="sensor_pos_auto_detected_msg">Sensor auto-detected: %1$s</string>
     <string name="settings_show_sensor_location">Sensor Location Pin</string>
     <string name="settings_show_sensor_location_desc">Show magnet icon on screen indicating physical sensor spot.</string>
     <string name="settings_sensor_position">Sensor Placement</string>

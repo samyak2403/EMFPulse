@@ -22,4 +22,12 @@ class SensorPositionTest {
         assertTrue(SensorPosition.entries.contains(SensorPosition.TOP_LEFT))
         assertTrue(SensorPosition.entries.contains(SensorPosition.TOP_RIGHT))
     }
+
+    @Test
+    fun testSimulatedSensorManagerAutoDetect() {
+        val simManager = com.samyak.emfpulse.data.sensor.SimulatedEmfSensorManager()
+        val detected = simManager.detectHardwareSensorPosition()
+        assertEquals(SensorPosition.LEFT, detected)
+    }
 }
+

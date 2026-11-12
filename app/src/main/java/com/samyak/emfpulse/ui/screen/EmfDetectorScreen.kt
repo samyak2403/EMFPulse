@@ -75,7 +75,8 @@ fun EmfDetectorScreen(
         onToggleZeroCalibrate = viewModel::toggleZeroCalibrate,
         onToggleBeep = viewModel::toggleBeep,
         onToggleUnit = viewModel::toggleUnit,
-        onPositionChanged = viewModel::setSensorPosition
+        onPositionChanged = viewModel::setSensorPosition,
+        onAutoDetect = viewModel::autoDetectSensorPosition
     )
 }
 
@@ -92,6 +93,7 @@ fun EmfDetectorContent(
     onToggleBeep: () -> Unit,
     onToggleUnit: () -> Unit,
     onPositionChanged: (SensorPosition) -> Unit,
+    onAutoDetect: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -301,6 +303,7 @@ fun EmfDetectorContent(
             SensorLocationIndicator(
                 position = state.sensorPosition,
                 onPositionChanged = onPositionChanged,
+                onAutoDetect = onAutoDetect,
                 modifier = Modifier.align(alignment)
             )
         }

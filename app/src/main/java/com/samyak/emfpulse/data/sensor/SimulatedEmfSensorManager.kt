@@ -1,6 +1,7 @@
 package com.samyak.emfpulse.data.sensor
 
 import com.samyak.emfpulse.data.model.EmfReading
+import com.samyak.emfpulse.data.model.SensorPosition
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -20,6 +21,8 @@ class SimulatedEmfSensorManager : EmfSensorManager {
 
     override val isSensorAvailable: Boolean
         get() = true
+
+    override fun detectHardwareSensorPosition(): SensorPosition? = SensorPosition.LEFT
 
     override fun startListening(): Flow<EmfReading> = flow {
         var tick = 0.0

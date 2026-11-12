@@ -14,3 +14,4 @@ enum class SensorPosition(
     TOP_RIGHT(R.string.sensor_pos_top_right),
     RIGHT(R.string.sensor_pos_right)
 }
+

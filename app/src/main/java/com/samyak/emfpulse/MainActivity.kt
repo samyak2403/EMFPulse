@@ -100,7 +100,8 @@ class MainActivity : ComponentActivity() {
                                     onSelectUnit = viewModel::setUnit,
                                     onResetCalibration = viewModel::toggleZeroCalibrate,
                                     onToggleSensorLocation = viewModel::setSensorLocationVisible,
-                                    onSelectSensorPosition = viewModel::setSensorPosition
+                                    onSelectSensorPosition = viewModel::setSensorPosition,
+                                    onAutoDetectSensorPosition = viewModel::autoDetectSensorPosition
                                 )
                             }
                             ScreenState.ABOUT -> {

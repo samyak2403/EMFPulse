@@ -7,15 +7,21 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -46,42 +52,39 @@ import com.samyak.emfpulse.ui.theme.TextSecondary
 
 /**
  * Visual indicator pinned to the physical location of the device's magnetic sensor.
- * Displays a sleek edge tab with ic_magnetic_sensor matching the reference design.
+ * Displays the transparent ic_magnetic_sensor directly on the screen edge without background.
  */
 @Composable
 fun SensorLocationIndicator(
     position: SensorPosition,
     onPositionChanged: (SensorPosition) -> Unit,
+    onAutoDetect: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
-    val (offsetModifier, tabShape, iconRotation) = when (position) {
+    val (offsetModifier, iconRotation) = when (position) {
         SensorPosition.LEFT -> {
-            Triple(
+            Pair(
                 Modifier.offset(x = 0.dp, y = 210.dp),
-                RoundedCornerShape(topStart = 0.dp, bottomStart = 0.dp, topEnd = 8.dp, bottomEnd = 8.dp),
-                90f // Base flush with left bezel, magnet loop pointing inward into screen
+                90f // Base flush with left bezel, sensor loop pointing inward into screen
             )
         }
         SensorPosition.RIGHT -> {
-            Triple(
+            Pair(
                 Modifier.offset(x = 0.dp, y = 210.dp),
-                RoundedCornerShape(topStart = 8.dp, bottomStart = 8.dp, topEnd = 0.dp, bottomEnd = 0.dp),
-                270f // Base flush with right bezel, magnet loop pointing inward into screen
+                270f // Base flush with right bezel, sensor loop pointing inward into screen
             )
         }
         SensorPosition.TOP_LEFT -> {
-            Triple(
+            Pair(
                 Modifier.offset(x = 16.dp, y = 60.dp),
-                RoundedCornerShape(8.dp),
                 180f
             )
         }
         SensorPosition.TOP_RIGHT -> {
-            Triple(
+            Pair(
                 Modifier.offset(x = (-16).dp, y = 60.dp),
-                RoundedCornerShape(8.dp),
                 180f
             )
         }
@@ -90,11 +93,8 @@ fun SensorLocationIndicator(
     Box(
         modifier = modifier
             .then(offsetModifier)
-            .clip(tabShape)
-            .background(Color(0xFF000000))
-            .border(1.dp, Color(0xFF2E2E34), tabShape)
             .clickable { showDialog = true }
-            .padding(horizontal = 4.dp, vertical = 4.dp),
+            .padding(2.dp),
         contentAlignment = Alignment.Center
     ) {
         Image(
@@ -102,7 +102,7 @@ fun SensorLocationIndicator(
             contentDescription = stringResource(R.string.sensor_location_title),
             colorFilter = ColorFilter.tint(Color.White),
             modifier = Modifier
-                .size(24.dp)
+                .size(28.dp)
                 .rotate(iconRotation)
         )
     }
@@ -114,6 +114,7 @@ fun SensorLocationIndicator(
                 onPositionChanged(it)
                 showDialog = false
             },
+            onAutoDetect = onAutoDetect,
             onDismiss = { showDialog = false }
         )
     }
@@ -123,6 +124,7 @@ fun SensorLocationIndicator(
 fun SensorLocationDialog(
     currentPosition: SensorPosition,
     onPositionSelect: (SensorPosition) -> Unit,
+    onAutoDetect: () -> Unit = {},
     onDismiss: () -> Unit
 ) {
     AlertDialog(
@@ -158,13 +160,38 @@ fun SensorLocationDialog(
                     lineHeight = 18.sp
                 )
 
-                // Position Selector Chips
-                Text(
-                    text = stringResource(R.string.settings_sensor_position),
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = TextPrimary
-                )
+                // Position Selector Header with Auto Detect button
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(R.string.settings_sensor_position),
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = TextPrimary
+                    )
+
+                    TextButton(
+                        onClick = onAutoDetect,
+                        contentPadding = PaddingValues(horizontal = 6.dp, vertical = 2.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.AutoAwesome,
+                            contentDescription = null,
+                            tint = AccentRose,
+                            modifier = Modifier.size(13.dp)
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            text = stringResource(R.string.sensor_pos_auto_detect),
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = AccentRose
+                        )
+                    }
+                }
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),

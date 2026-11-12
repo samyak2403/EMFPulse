@@ -1,0 +1,4 @@
+• Fixed vector sensor icon styling and visibility in No-Sensor and About screens.
+• F-Droid build improvements and offline compliance.
+• Updated developer attribution in Settings.
+• Performance optimizations and stability refinements.

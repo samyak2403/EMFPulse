@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -80,6 +81,7 @@ fun NoSensorScreen(
                 Image(
                     painter = painterResource(id = R.drawable.ic_magnetic_sensor),
                     contentDescription = stringResource(R.string.no_sensor_title),
+                    colorFilter = ColorFilter.tint(Color.White),
                     modifier = Modifier.size(100.dp)
                 )
             }

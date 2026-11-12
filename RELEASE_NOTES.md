@@ -4,6 +4,20 @@ All notable changes and releases for EMF Pulse are documented here.
 
 ---
 
+## [v1.0.3] - 2026-11-12
+> **Version Code:** `4` • **Target SDK:** `37` (Android 15+) • **Min SDK:** `24` (Android 7.0+)
+
+### 🐛 Bug Fixes & Refinements
+- **F-Droid Build Compliance**:
+  - Removed Foojay toolchains resolver plugin from `settings.gradle.kts` ensuring 100% offline-capable reproducible builds for F-Droid.
+- **Sensor Icon Color & Visibility**:
+  - Fixed vector icon fill styling in `ic_magnetic_sensor` to render crisp white against dark surfaces.
+  - Added explicit white tint color filtering in `NoSensorScreen` and `AboutScreen`.
+- **Developer Attribution & UI Consistency**:
+  - Updated developer branding in Settings screen app footer and metadata.
+
+---
+
 ## [v1.0.2] - 2026-11-12
 > **Version Code:** `3` • **Target SDK:** `37` (Android 15+) • **Min SDK:** `24` (Android 7.0+)
 

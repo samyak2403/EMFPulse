@@ -59,7 +59,7 @@
     <string name="settings_sensor_unavailable">Unavailable</string>
     <string name="settings_baseline_offset">Baseline Offset</string>
     <string name="settings_reset_zero">Reset Zero</string>
-    <string name="settings_app_info">EMFPulse v1.0.2 • Plus Jakarta Sans &amp; Veil Theme</string>
+    <string name="settings_app_info">EMFPulse v1.0.3 • Samyak Kamble &amp; Veil Theme</string>
 
     <!-- About & Developer Section in Settings -->
     <string name="settings_section_about">ABOUT &amp; PROJECT</string>
@@ -72,7 +72,7 @@
 
     <!-- About Screen -->
     <string name="about_title">About</string>
-    <string name="about_app_version">Version 1.0.2 (Build 3)</string>
+    <string name="about_app_version">Version 1.0.3 (Build 4)</string>
     <string name="about_tagline">Precision Electromagnetic Field &amp; Radiation Detector</string>
     <string name="about_section_description_title">About Application</string>
     <string name="about_section_description_body">EMF Pulse is an open-source Android application designed for detecting electromagnetic radiation, measuring magnetic flux density, paranormal research, and inspecting electronic equipment with real-time audio and visual feedback.</string>

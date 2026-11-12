@@ -40,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -120,6 +121,7 @@ fun AboutScreen(
                 Image(
                     painter = painterResource(id = R.drawable.ic_magnetic_sensor),
                     contentDescription = stringResource(R.string.app_name),
+                    colorFilter = ColorFilter.tint(Color.White),
                     modifier = Modifier.size(80.dp)
                 )
             }

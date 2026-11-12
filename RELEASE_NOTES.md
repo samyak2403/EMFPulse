@@ -64,3 +64,4 @@ All notable changes and releases for EMF Pulse are documented here.
 - **Aesthetic & Theme**:
   - Modern VeilVPN dark aesthetic with ambient glow, custom emerald I/O switches, and Plus Jakarta Sans typography.
   - 100% offline, privacy-first, zero analytics, zero ads.
+

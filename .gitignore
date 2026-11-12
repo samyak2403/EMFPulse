@@ -28,3 +28,7 @@ vendor/bundle
 app/release/
 *.apk
 *.aab
+
+# F-Droid / IzzyOnDroid metadata
+*.yml
+com.samyak.emfpulse.yml

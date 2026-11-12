@@ -3,3 +3,4 @@
 • Enhanced Settings navigation with dedicated About & Project section.
 • Smooth back-stack and hardware back navigation handling.
 • Performance optimizations and UI polish.
+
